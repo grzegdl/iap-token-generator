@@ -1,0 +1,15 @@
+[[constraint]]
+  name = "github.com/spf13/cobra"
+  version = "0.0.3"
+
+[[constraint]]
+  name = "github.com/spf13/viper"
+  version = "1.2.0"
+
+[[constraint]]
+  branch = "package"
+  name = "github.com/tonglil/iap_curl"
+
+[prune]
+  go-tests = true
+  unused-packages = true

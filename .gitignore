@@ -1,2 +1,3 @@
 *.json
 token.*
+iap-token-generator

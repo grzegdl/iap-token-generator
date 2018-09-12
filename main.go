@@ -15,7 +15,7 @@ import (
 
 var (
 	// Configuration options
-	refresh     bool
+	refresh     time.Duration
 	filename    string
 	credentials string
 	client      string
@@ -36,7 +36,7 @@ func init() {
 	viper.BindPFlag("client", flags.Lookup("id"))
 	viper.BindEnv("client", clientEnv)
 
-	rootCmd.PersistentFlags().BoolVarP(&refresh, "refresh", "r", false, "Refresh the token on an interval")
+	rootCmd.PersistentFlags().DurationVarP(&refresh, "refresh", "r", time.Duration(0), "Refresh the token on a specified interval")
 	rootCmd.PersistentFlags().StringVarP(&filename, "filename", "f", "", "Write the token to a file")
 }
 
@@ -74,9 +74,8 @@ var rootCmd = &cobra.Command{
 			fmt.Println(token)
 		}
 
-		if refresh {
-			// ticker := time.NewTicker(time.Hour / 4)
-			ticker := time.NewTicker(time.Minute / 4)
+		if refresh > time.Duration(0) {
+			ticker := time.NewTicker(refresh)
 			sigs := make(chan os.Signal, 1)
 			done := make(chan bool, 1)
 			errs := make(chan error, 1)

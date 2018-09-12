@@ -20,7 +20,7 @@ Flags:
   -f, --filename string      Write the token to a file
   -h, --help                 help for iap-token-generator
   -i, --id string            The IAP client ID [IAP_CLIENT_ID]
-  -r, --refresh              Refresh the token on an interval
+  -r, --refresh duration     Refresh the token on a specified interval
 ```
 
 ## Usage
